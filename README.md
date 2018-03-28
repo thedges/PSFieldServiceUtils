@@ -14,6 +14,8 @@ Dates are string values in format: mm/dd/yyyy
 
 <b><i>PSFieldServiceUtils.moveAppointments('03/14/2018', '03/29/2018');</i></b>
 
+![alt text](https://github.com/thedges/PSFieldServiceUtils/blob/master/MoveAppointments.gif "Move Appointments")
+
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
