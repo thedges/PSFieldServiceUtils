@@ -10,9 +10,9 @@ This method will move all Service Appointments scheduled on the source date and 
 
 Dates are string values in format: mm/dd/yyyy
 
-Usage: Go to Developer Console > Debug > Open Execute Anonymous Window. Run the following in the screen and substitude the date strings as needed:
+<b>Usage:</b> Go to <b>Developer Console > Debug > Open Execute Anonymous Window</b>. Run the following in the screen and substitude the date strings as needed:
 
-PSFieldServiceUtils.moveAppointments('03/14/2018', '03/29/2018');
+<b><i>PSFieldServiceUtils.moveAppointments('03/14/2018', '03/29/2018');</i></b>
 
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
