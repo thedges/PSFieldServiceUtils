@@ -1,6 +1,12 @@
 # PSFieldServiceUtils
 
-This package contains a utility Apex class to manipulate WorkOrders and ServiceAppointments for demo purposes. I will add to the methods available in the PSFieldServiceUtils class over time.
+This package contains a set of utilities for Field Service Lightning demos. The primary pieces of this repo are:
+
+  1. Apex Utility Class - to include miscellaneous functions for variety of purposes
+  2. WorkOrder Template Engine - config approach for generating standard WOLIs, knowledge articles and File attachments when new work orders are created
+
+__Apex Utility Class__
+First is utility Apex class to manipulate WorkOrders and ServiceAppointments for demo purposes. I will add to the methods available in the PSFieldServiceUtils class over time.
 
 A description of the methods available are:
 
@@ -15,6 +21,9 @@ Dates are string values in format: mm/dd/yyyy
 <b><i>PSFieldServiceUtils.moveAppointments('03/14/2018', '03/29/2018');</i></b>
 
 ![alt text](https://github.com/thedges/PSFieldServiceUtils/blob/master/MoveAppointments.gif "Move Appointments")
+
+__WorkOrder Template Engine__
+
 
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
