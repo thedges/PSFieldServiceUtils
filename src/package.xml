@@ -4,5 +4,15 @@
         <members>PSFieldServiceUtils</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>PSWorkOrderTemplateTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>PS_KA_Template__c</members>
+        <members>PS_WOLI_Template__c</members>
+        <members>PS_Work_Order_Template__c</members>
+        <name>CustomObject</name>
+    </types>
     <version>39.0</version>
 </Package>
