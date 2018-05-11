@@ -32,7 +32,12 @@ This engine is implemented with the following:
   3. <b>PS_WOLI_Template__c</b> - child object of template where you define WOLIs for your new WorkOrders
   4. <b>PS_KA_Template__c</b> - child object of template where you define which Knowledge Articles to attach to your new WorkOrders. Right now you have to get the main record id of the knowledge article and add it since Lookup field to Knowledge Articles is not supported by Salesforce at this time.
   
-  Here is recording of demo using the template engine. The demo shows:
+<b>Prerequisite</b>
+This WorkOrder template engine requires that Lightning Knowledge be enabled in your org and have the primary knowledge articles configured as "Knowledge__kav" as show below:
+
+![alt text](https://github.com/thedges/PSFieldServiceUtils/blob/master/KnowledgeObject.png "Knowledge Object")
+
+Here is recording of demo using the template engine. The demo shows:
   1. The configuration of a Work Order template
   2. Creation of new Work Order and the template being applied
   3. Showing referencing the WOLIs, knowledge articles and file attachments on FSL mobile app
