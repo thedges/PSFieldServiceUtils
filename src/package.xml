@@ -15,6 +15,10 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>PS_Work_Order_Template__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
         <members>WOLI_Template_Record_Page</members>
         <members>Work_Order_Template_Record_Page</members>
         <name>FlexiPage</name>
