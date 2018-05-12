@@ -22,10 +22,9 @@ trigger PSWorkOrderTemplateTrigger on WorkOrder (after insert) {
         ////////////////////////////////////////  
         // get map of all work type templates //
         ////////////////////////////////////////  
-        List<ID> kaIdList = new List<ID>();
-        Map<ID, KnowledgeArticleVersion> kaMap = new Map<ID, KnowledgeArticleVersion>();
+        List<String> kaNumList = new List<String>();
         for (PS_Work_Order_Template__c tmp : [SELECT ID, Work_Type__c, 
-                                              (SELECT Id, Name, Order__c, Knowledge_ID__c FROM KA_Templates__r ORDER BY Order__c ASC), 
+                                              (SELECT Id, Name, Order__c, Article_Number__c FROM KA_Templates__r ORDER BY Order__c ASC), 
                                               (SELECT Id, Name, Order__c, Subject__c, Description__c, Copy_WO_Address__c FROM WOLI_Templates__r ORDER BY Order__c ASC) 
                                               FROM PS_Work_Order_Template__c 
                                               WHERE Work_Type__c IN :workTypeIdList])
@@ -38,7 +37,7 @@ trigger PSWorkOrderTemplateTrigger on WorkOrder (after insert) {
             {
                 for (PS_KA_Template__c kaTmp : tmp.KA_Templates__r)
                 { 
-                    kaIdList.add(kaTmp.Knowledge_ID__c);
+                    kaNumList.add(kaTmp.Article_Number__c);
                 }
             }
         }
@@ -46,23 +45,13 @@ trigger PSWorkOrderTemplateTrigger on WorkOrder (after insert) {
         /////////////////////////////////  
         // retrieve knowledge articles //
         /////////////////////////////////
-        List<Id> kaVerIdList = new List<Id>();
-        Map<ID, ID> tmpKAMap = new Map<ID, ID>();
-        Map<ID, KnowledgeArticleVersion> kaVerMap = new Map<ID, KnowledgeArticleVersion>();
-        if (kaIdList.size() > 0)
-        {
-            for (Knowledge__kav k : [SELECT Id, KnowledgeArticleId FROM Knowledge__kav WHERE IsLatestVersion = true AND Id IN :kaIdList])
-            {
-                kaVerIdList.add(k.KnowledgeArticleId);
-                tmpKAMap.put(k.KnowledgeArticleId, k.Id);
-            }
-        }
+        Map<String, KnowledgeArticleVersion> kaNumMap = new Map<String, KnowledgeArticleVersion>();
         
-        if (kaVerIdList.size() > 0)
+        if (kaNumList.size() > 0)
         {
-            for (KnowledgeArticleVersion ver : [SELECT Id, Title, KnowledgeArticleId FROM KnowledgeArticleVersion WHERE IsLatestVersion = true AND KnowledgeArticleId IN :kaVerIdList AND PublishStatus = 'Online'])
+            for (KnowledgeArticleVersion ver : [SELECT Id, Title, ArticleNumber, KnowledgeArticleId FROM KnowledgeArticleVersion WHERE IsLatestVersion = true AND ArticleNumber IN :kaNumList AND PublishStatus = 'Online'])
             {
-                kaVerMap.put(tmpKAMap.get(ver.KnowledgeArticleId), ver);
+                kaNumMap.put(ver.ArticleNumber, ver);
             }
         }
         
@@ -100,9 +89,9 @@ trigger PSWorkOrderTemplateTrigger on WorkOrder (after insert) {
                 {
                     for (PS_KA_Template__c kaTmp : tmp.KA_Templates__r)
                     {
-                        if (kaVerMap.containsKey(kaTmp.Knowledge_ID__c))
+                        if (kaNumMap.containsKey(kaTmp.Article_Number__c))
                         {
-                            KnowledgeArticleVersion kaVer = kaVerMap.get(kaTmp.Knowledge_ID__c);
+                            KnowledgeArticleVersion kaVer = kaNumMap.get(kaTmp.Article_Number__c);
                             
                             LinkedArticle la = new LinkedArticle();
                             la.KnowledgeArticleId = kaVer.KnowledgeArticleId;
@@ -211,8 +200,6 @@ trigger PSWorkOrderTemplateTrigger on WorkOrder (after insert) {
                 
             }
         }
-        
-        
         
         if (woliList.size() > 0) insert woliList;
         if (linkArticleList.size() > 0) insert linkArticleList;
