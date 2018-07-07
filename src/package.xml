@@ -23,5 +23,11 @@
         <members>Work_Order_Template_Record_Page</members>
         <name>FlexiPage</name>
     </types>
+    <types>
+        <members>PS_KA_Template__c-KA Template Layout</members>
+        <members>PS_WOLI_Template__c-WOLI Template Layout</members>
+        <members>PS_Work_Order_Template__c-Work Order Template Layout</members>
+        <name>Layout</name>
+    </types>
     <version>39.0</version>
 </Package>
