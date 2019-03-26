@@ -1,5 +1,7 @@
 # PSFieldServiceUtils
 
+THIS SOFTWARE IS COVERED BY [THIS DISCLAIMER](https://raw.githubusercontent.com/thedges/Disclaimer/master/disclaimer.txt).
+
 This package contains a set of utilities for Field Service Lightning demos. The primary pieces of this repo are:
 
   1. <b>Apex Utility Class</b> - to include miscellaneous functions for variety of purposes
